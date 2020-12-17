@@ -1,16 +1,19 @@
 class SLL:
-    def __init__(self,a=[],is_LL=False,LL_end=None):
+    def __init__(self,a=[],is_LL=False):
         self.dead=False
+        self.L=[None,[]]
+        c=self.L
         if is_LL:
-            self.L=[None,a]
-            self.end=LL_end
+            d=a
+            while d:
+                c=c[-1]
+                c+=[d[0],[]]
+                d=d[-1]
         else:
-            self.L=[None,[]]
-            c=self.L
             for i in range(len(a)):
                 c=c[-1]
                 c+=[a[i],[]]
-            self.end=c
+        self.end=c
 
     def __len__(self):
         if self.dead:return 0
@@ -105,7 +108,7 @@ class SLL:
         if self.dead:return None
         c=p[-1]
         p[-1]=[]
-        c=SLL(c,is_LL=True,LL_end=self.end)
+        c=SLL(c,is_LL=True)
         self.end=p
         return c
 
@@ -118,19 +121,23 @@ class SLL:
         for i in a:self.appendleft(i)
 
 class DLL(SLL):
-    def __init__(self,a,is_LL=False,LL_end=None):
+    def __init__(self,a,is_LL=False):
         self.dead=False
+        self.L=[None,None,[]]
+        c=self.L
         if is_LL:
-            self.L=[None,None,a]
-            self.end=LL_end
+            d=a
+            while d:
+                p=c
+                c=c[-1]
+                c+=[d[0],p,[]]
+                d=d[-1]
         else:
-            self.L=[None,None,[]]
-            c=self.L
             for i in range(len(a)):
                 p=c
                 c=c[-1]
                 c+=[a[i],p,[]]
-            self.end=c
+        self.end=c
 
     def append(self,val):
         if self.dead:return None
