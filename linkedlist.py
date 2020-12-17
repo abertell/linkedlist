@@ -117,6 +117,9 @@ class SLL:
         if self.dead:return None
         for i in a:self.appendleft(i)
 
+    def copy(self):
+        return SLL(self.to_list())
+
 class DLL(SLL):
     def __init__(self,a,is_LL=False,LL_end=None):
         self.dead=False
@@ -170,3 +173,6 @@ class DLL(SLL):
         self.end[-1]+=other.L[-1]
         self.end=other.end
         other.dead=True
+
+    def copy(self):
+        return DLL(self.to_list())
