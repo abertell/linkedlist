@@ -1,3 +1,7 @@
+#Singly/Doubly Linked Lists using nested lists implementation
+#Author: Adam Bertelli (abertell@andrew.cmu.edu)
+
+#Singly Linked List
 class SLL:
     def __init__(self,a=[],is_LL=False,LL_end=None):
         self.dead=False
@@ -120,6 +124,7 @@ class SLL:
     def copy(self):
         return SLL(self.to_list())
 
+#Doubly Linked List
 class DLL(SLL):
     def __init__(self,a,is_LL=False,LL_end=None):
         self.dead=False
